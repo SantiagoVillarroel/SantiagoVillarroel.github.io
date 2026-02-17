@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import BackToProjects from "@/components/navigation/BackToProjects";
+import ArchitectureGraph from "@/components/projects/ArchitectureGraph";
 import { projects } from "@/lib/projects";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -57,11 +58,15 @@ export default async function ProjectPage({ params }: Params) {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-3">Architecture</h2>
-        <Card>
-          <CardContent>
-            <p className="text-muted-foreground">{project.architecture ?? "TBD: Add architecture overview, diagrams, and components."}</p>
-          </CardContent>
-        </Card>
+        {project.architectureGraph ? (
+          <ArchitectureGraph data={project.architectureGraph} />
+        ) : (
+          <Card>
+            <CardContent>
+              <p className="text-muted-foreground">{project.architecture ?? "TBD: Add architecture overview, diagrams, and components."}</p>
+            </CardContent>
+          </Card>
+        )}
       </section>
     </main>
   );

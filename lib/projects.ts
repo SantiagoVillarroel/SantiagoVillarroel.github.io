@@ -1,3 +1,23 @@
+export interface ArchNode {
+  id: string;
+  label: string;
+  type: "frontend" | "backend" | "database" | "api" | "worker" | "service" | "storage";
+  description: string;
+  tech?: string[];
+}
+
+export interface ArchEdge {
+  id: string;
+  source: string;
+  target: string;
+  label?: string;
+}
+
+export interface ArchitectureGraph {
+  nodes: ArchNode[];
+  edges: ArchEdge[];
+}
+
 export type ProjectStatus = "MVP" | "Active" | "Paused";
 
 export interface Project {
@@ -16,6 +36,7 @@ export interface Project {
   overview?: string;
   problem?: string;
   architecture?: string;
+  architectureGraph?: ArchitectureGraph;
 }
 
 export const projects: Project[] = [
@@ -38,6 +59,51 @@ export const projects: Project[] = [
       "Writers spend hours creating drafts and performing SEO research. This tool automates initial drafts and speeds up iteration.",
     architecture:
       "Next.js frontend, Node API layer, GPT-based inference service, Redis cache, and Postgres for persistence.",
+    architectureGraph: {
+      nodes: [
+        {
+          id: "frontend",
+          label: "Frontend",
+          type: "frontend",
+          description: "Next.js React app for content input and preview",
+          tech: ["Next.js", "React", "TypeScript"],
+        },
+        {
+          id: "api",
+          label: "API Layer",
+          type: "api",
+          description: "REST API for content generation requests",
+          tech: ["Node.js", "Express"],
+        },
+        {
+          id: "inference",
+          label: "GPT Inference",
+          type: "service",
+          description: "LLM service for generating content",
+          tech: ["GPT-4", "OpenAI API"],
+        },
+        {
+          id: "cache",
+          label: "Cache",
+          type: "storage",
+          description: "Redis for prompt templates and results",
+          tech: ["Redis"],
+        },
+        {
+          id: "db",
+          label: "Database",
+          type: "database",
+          description: "PostgreSQL for user data and content history",
+          tech: ["PostgreSQL"],
+        },
+      ],
+      edges: [
+        { id: "e1", source: "frontend", target: "api", label: "HTTP" },
+        { id: "e2", source: "api", target: "inference", label: "Query" },
+        { id: "e3", source: "api", target: "cache", label: "Check/Store" },
+        { id: "e4", source: "api", target: "db", label: "Persist" },
+      ],
+    },
   },
   {
     id: "2",
