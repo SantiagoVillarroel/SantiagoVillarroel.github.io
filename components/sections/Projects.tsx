@@ -1,51 +1,286 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter, useSearchParams } from "next/navigation";
+import * as LucideIcons from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { projects, getAllTags, filterProjects } from "@/lib/projects";
 
-const projects = [
-  {
-    title: "Legal AI Assistant",
-    description: "AI-powered legal document analysis and chat system.",
-  },
-  {
-    title: "Prolog Education Tool",
-    description: "Visual query-based learning platform for logic programming.",
-  },
-  {
-    title: "Discounts App",
-    description: "Full-stack app with NestJS and React Native.",
-  },
-];
+type SortOption = "recent" | "complexity" | "featured";
 
 export default function Projects() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState<SortOption>("recent");
+  const [displayCount, setDisplayCount] = useState(6);
+  const [mounted, setMounted] = useState(false);
+
+  const allTags = getAllTags();
+
+  // Initialize from URL params
+  useEffect(() => {
+    setMounted(true);
+    const tagsParam = searchParams.get("tags");
+    const searchParam = searchParams.get("search");
+    const sortParam = searchParams.get("sort");
+
+    if (tagsParam) {
+      setSelectedTags(tagsParam.split(",").filter(Boolean));
+    }
+    if (searchParam) {
+      setSearchQuery(decodeURIComponent(searchParam));
+    }
+    if (sortParam && ["recent", "complexity", "featured"].includes(sortParam)) {
+      setSortBy(sortParam as SortOption);
+    }
+  }, [searchParams]);
+
+  // Update URL when filters change
+  useEffect(() => {
+    if (!mounted) return;
+
+    const params = new URLSearchParams();
+    if (selectedTags.length > 0) {
+      params.set("tags", selectedTags.join(","));
+    }
+    if (searchQuery.trim()) {
+      params.set("search", encodeURIComponent(searchQuery));
+    }
+    if (sortBy !== "recent") {
+      params.set("sort", sortBy);
+    }
+
+    const queryString = params.toString();
+    const newUrl = queryString ? `?${queryString}` : "";
+    router.push(newUrl || "/");
+  }, [selectedTags, searchQuery, sortBy, mounted, router]);
+
+  // Filter and sort projects
+  const filteredProjects = useMemo(
+    () => filterProjects(projects, selectedTags, searchQuery, sortBy),
+    [selectedTags, searchQuery, sortBy]
+  );
+
+  const displayedProjects = filteredProjects.slice(0, displayCount);
+  const hasMore = displayCount < filteredProjects.length;
+
+  const handleTagToggle = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+    setDisplayCount(6); // Reset pagination on filter change
+  };
+
+  const handleClearFilters = () => {
+    setSelectedTags([]);
+    setSearchQuery("");
+    setSortBy("recent");
+    setDisplayCount(6);
+  };
+
+  const handleLoadMore = () => {
+    setDisplayCount((prev) => prev + 4);
+  };
+
+  if (!mounted) return null; // Prevent hydration mismatch
+
   return (
-    <section
-      id="projects"
-      className="max-w-6xl mx-auto px-6 py-32"
-    >
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-32">
       <h2 className="text-3xl font-bold mb-12">Projects</h2>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {projects.map((project, i) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            viewport={{ once: true }}
+      {/* Filter Controls */}
+      <div className="mb-8 space-y-6">
+        {/* Search Input */}
+        <div>
+          <Input
+            placeholder="Search projects by name, keywords..."
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setDisplayCount(6);
+            }}
+            className="w-full max-w-md"
+          />
+        </div>
+
+        {/* Sort Options */}
+        <div className="flex gap-2 flex-wrap">
+          <span className="text-sm font-medium text-muted-foreground self-center">
+            Sort by:
+          </span>
+          <Button
+            variant={sortBy === "recent" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSortBy("recent")}
           >
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">
-                {project.description}
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+            Recent
+          </Button>
+          <Button
+            variant={sortBy === "complexity" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSortBy("complexity")}
+          >
+            Complexity
+          </Button>
+          <Button
+            variant={sortBy === "featured" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSortBy("featured")}
+          >
+            Featured
+          </Button>
+        </div>
+
+        {/* Tag Filters */}
+        <div>
+          <div className="flex gap-2 flex-wrap mb-3">
+            <span className="text-sm font-medium text-muted-foreground self-center">
+              Filter by tags:
+            </span>
+            {selectedTags.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleClearFilters}
+                className="text-xs"
+              >
+                Clear filters
+              </Button>
+            )}
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            {allTags.map((tag) => (
+              <Button
+                key={tag}
+                variant={selectedTags.includes(tag) ? "default" : "outline"}
+                size="sm"
+                onClick={() => handleTagToggle(tag)}
+                className="text-xs"
+              >
+                {tag}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Results count */}
+        <p className="text-sm text-muted-foreground">
+          Showing {displayedProjects.length} of {filteredProjects.length} projects
+        </p>
       </div>
+
+      {/* Projects Grid */}
+      {filteredProjects.length > 0 ? (
+        <>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
+            {displayedProjects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full flex flex-col">
+                  {/* Status Badge */}
+                  <div className="px-6 pt-4 pb-2">
+                    <span
+                      className={`text-xs font-semibold px-3 py-1 rounded-full inline-block ${
+                        project.status === "Active"
+                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          : project.status === "MVP"
+                          ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                          : "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                      }`}
+                    >
+                      {project.status}
+                    </span>
+                  </div>
+
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg">{project.title}</CardTitle>
+                  </CardHeader>
+
+                  <CardContent className="flex-1 space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack Icons */}
+                    <div className="flex gap-2 flex-wrap">
+                      {project.techStack.map((iconName) => {
+                        const IconComponent = (LucideIcons as any)[iconName];
+                        return IconComponent ? (
+                          <div
+                            key={iconName}
+                            className="p-2 rounded-lg bg-muted"
+                            title={iconName}
+                          >
+                            <IconComponent className="w-4 h-4" />
+                          </div>
+                        ) : null;
+                      })}
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex gap-1 flex-wrap pt-2">
+                      {project.tags.map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={() => handleTagToggle(tag)}
+                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                            selectedTags.includes(tag)
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-muted text-muted-foreground hover:bg-muted/80"
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  </CardContent>
+
+                  {/* CTA Button */}
+                  <div className="px-6 pb-4 pt-2">
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="w-full"
+                      asChild
+                    >
+                      <a href={project.link}>View Project</a>
+                    </Button>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Load More Button */}
+          {hasMore && (
+            <div className="flex justify-center">
+              <Button variant="outline" size="lg" onClick={handleLoadMore}>
+                Load More Projects
+              </Button>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground mb-4">
+            No projects found matching your filters.
+          </p>
+          <Button variant="outline" onClick={handleClearFilters}>
+            Clear Filters
+          </Button>
+        </div>
+      )}
     </section>
   );
 }
