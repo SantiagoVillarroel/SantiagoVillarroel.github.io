@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter, useSearchParams } from "next/navigation";
 import * as LucideIcons from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,54 +11,52 @@ import { projects, getAllTags, filterProjects } from "@/lib/projects";
 type SortOption = "recent" | "complexity" | "featured";
 
 export default function Projects() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("recent");
   const [displayCount, setDisplayCount] = useState(6);
-  const [mounted, setMounted] = useState(false);
+  const storageKey = "projects.filters.v1";
+
+  // Load saved filters from localStorage on mount
+  useEffect(() => {
+    try {
+      if (typeof window === "undefined") return;
+      const raw = window.localStorage.getItem(storageKey);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed) {
+        if (Array.isArray(parsed.selectedTags)) setSelectedTags(parsed.selectedTags);
+        if (typeof parsed.searchQuery === "string") setSearchQuery(parsed.searchQuery);
+        if (["recent", "complexity", "featured"].includes(parsed.sortBy))
+          setSortBy(parsed.sortBy as SortOption);
+        if (typeof parsed.displayCount === "number") setDisplayCount(parsed.displayCount);
+      }
+    } catch (e) {
+      // ignore JSON parse errors
+      // console.warn("Failed to load project filters", e)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Persist filters to localStorage whenever they change
+  useEffect(() => {
+    try {
+      if (typeof window === "undefined") return;
+      const payload = {
+        selectedTags,
+        searchQuery,
+        sortBy,
+        displayCount,
+      };
+      window.localStorage.setItem(storageKey, JSON.stringify(payload));
+    } catch (e) {
+      // ignore storage errors
+    }
+  }, [selectedTags, searchQuery, sortBy, displayCount]);
 
   const allTags = getAllTags();
 
-  // Initialize from URL params
-  useEffect(() => {
-    setMounted(true);
-    const tagsParam = searchParams.get("tags");
-    const searchParam = searchParams.get("search");
-    const sortParam = searchParams.get("sort");
-
-    if (tagsParam) {
-      setSelectedTags(tagsParam.split(",").filter(Boolean));
-    }
-    if (searchParam) {
-      setSearchQuery(decodeURIComponent(searchParam));
-    }
-    if (sortParam && ["recent", "complexity", "featured"].includes(sortParam)) {
-      setSortBy(sortParam as SortOption);
-    }
-  }, [searchParams]);
-
-  // Update URL when filters change
-  useEffect(() => {
-    if (!mounted) return;
-
-    const params = new URLSearchParams();
-    if (selectedTags.length > 0) {
-      params.set("tags", selectedTags.join(","));
-    }
-    if (searchQuery.trim()) {
-      params.set("search", encodeURIComponent(searchQuery));
-    }
-    if (sortBy !== "recent") {
-      params.set("sort", sortBy);
-    }
-
-    const queryString = params.toString();
-    const newUrl = queryString ? `?${queryString}` : "";
-    router.push(newUrl || "/");
-  }, [selectedTags, searchQuery, sortBy, mounted, router]);
+  // No URL syncing: keep filter state purely client-side to avoid unexpected navigation/scroll jumps.
 
   // Filter and sort projects
   const filteredProjects = useMemo(
@@ -88,7 +85,7 @@ export default function Projects() {
     setDisplayCount((prev) => prev + 4);
   };
 
-  if (!mounted) return null; // Prevent hydration mismatch
+  // Render immediately; filtering is client-side only.
 
   return (
     <section id="projects" className="max-w-6xl mx-auto px-6 py-32">
