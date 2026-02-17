@@ -245,13 +245,8 @@ export default function Projects() {
 
                   {/* CTA Button */}
                   <div className="px-6 pb-4 pt-2">
-                    <Button
-                      variant="default"
-                      size="sm"
-                      className="w-full"
-                      asChild
-                    >
-                      <a href={project.link}>View Project</a>
+                    <Button variant="default" size="sm" className="w-full" asChild>
+                      <a href={`/projects/${project.slug}`}>View Project</a>
                     </Button>
                   </div>
                 </Card>
