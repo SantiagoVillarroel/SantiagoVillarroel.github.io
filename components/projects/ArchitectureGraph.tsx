@@ -18,14 +18,14 @@ interface ArchitectureGraphProps {
   data: ArchGraphData;
 }
 
-const nodeTypeColors: Record<string, string> = {
-  frontend: "bg-blue-50 border-blue-300",
-  backend: "bg-purple-50 border-purple-300",
-  database: "bg-green-50 border-green-300",
-  api: "bg-orange-50 border-orange-300",
-  worker: "bg-yellow-50 border-yellow-300",
-  service: "bg-red-50 border-red-300",
-  storage: "bg-indigo-50 border-indigo-300",
+const nodeTypeStyles: Record<string, { background: string; border: string }> = {
+  frontend: { background: "#eff6ff", border: "#93c5fd" }, // blue-50 / blue-300
+  backend: { background: "#faf5ff", border: "#c084fc" }, // purple-50 / purple-300
+  database: { background: "#ecfdf5", border: "#86efac" }, // green-50 / green-300
+  api: { background: "#fff7ed", border: "#fdba74" }, // orange-50 / orange-300
+  worker: { background: "#fffbeb", border: "#fcd34d" }, // yellow-50 / yellow-300
+  service: { background: "#fef2f2", border: "#fca5a5" }, // red-50 / red-300
+  storage: { background: "#eef2ff", border: "#a5b4fc" }, // indigo-50 / indigo-300
 };
 
 export default function ArchitectureGraph({ data }: ArchitectureGraphProps) {
@@ -43,13 +43,9 @@ export default function ArchitectureGraph({ data }: ArchitectureGraphProps) {
       x: (idx % 3) * 250,
       y: Math.floor(idx / 3) * 200,
     },
+    // Keep inline styles minimal so Tailwind classes can control visuals
     style: {
-      padding: "16px",
-      borderRadius: "8px",
-      border: "2px solid",
       cursor: "pointer",
-      fontSize: "12px",
-      fontWeight: "500",
     },
   }));
 
@@ -82,21 +78,20 @@ export default function ArchitectureGraph({ data }: ArchitectureGraphProps) {
         <ReactFlow
           nodes={nodes.map((node) => {
             const projectNode = data.nodes.find((n) => n.id === node.id);
-            const colorClass = projectNode ? nodeTypeColors[projectNode.type] : "bg-gray-50";
+            const styleForType = projectNode ? nodeTypeStyles[projectNode.type] : { background: "#f8fafc", border: "#e2e8f0" };
             return {
               ...node,
               style: {
                 ...node.style,
-                padding: "16px",
-                borderRadius: "8px",
-                border: "2px solid",
+                minWidth: 120,
                 cursor: "pointer",
-                fontSize: "12px",
-                fontWeight: "500",
-                minWidth: "120px",
+                fontSize: 12,
+                fontWeight: 500,
+                padding: 16,
+                borderRadius: 8,
                 textAlign: "center",
-                backgroundColor: colorClass.split(" ")[0],
-                borderColor: colorClass.split(" ")[1],
+                backgroundColor: styleForType.background,
+                border: `2px solid ${styleForType.border}`,
               },
             };
           })}
