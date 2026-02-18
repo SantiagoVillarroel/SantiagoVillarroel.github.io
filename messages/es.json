@@ -6,13 +6,15 @@
     "contact": "Contacto"
   },
   "hero": {
+    "greeting": "Hola, soy Santiago",
     "title": "Desarrollador Full-Stack",
-    "subtitle": "Creando soluciones rápidas y escalables con tecnología moderna",
-    "cta": "Explora Mi Trabajo"
+    "subtitle": "Construyo aplicaciones web modernas con React, Next.js y arquitectura limpia.",
+    "viewProjects": "Ver Proyectos",
+    "contactMe": "Contactarme"
   },
   "about": {
-    "title": "Acerca de Mí",
-    "description": "Soy un desarrollador apasionado enfocado en crear aplicaciones intuitivas y de alto rendimiento. Me especializo en desarrollo full-stack con React, Next.js y Node.js."
+    "title": "Acerca de",
+    "description": "Soy un desarrollador de software enfocado en construir aplicaciones web limpias y escalables. Disfruto trabajando con React, Next.js, APIs backend, y explorando cómo la IA puede mejorar las experiencias de desarrolladores y usuarios."
   },
   "projects": {
     "title": "Proyectos",
@@ -32,12 +34,18 @@
     "architecture": "Arquitectura"
   },
   "contact": {
-    "title": "Ponte en Contacto",
+    "title": "Contacto",
     "description": "¿Tienes un proyecto en mente? ¡Hablemos!",
-    "name": "Nombre",
-    "email": "Correo Electrónico",
-    "message": "Mensaje",
-    "send": "Enviar Mensaje",
+    "name": "Tu nombre",
+    "email": "Tu correo electrónico",
+    "message": "Tu mensaje",
+    "send": "Enviar mensaje",
     "sending": "Enviando..."
+  },
+  "footer": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "X / Twitter",
+    "copyright": "© {year} Santiago. Creado con Next.js + Tailwind."
   }
 }

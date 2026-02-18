@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useI18n } from "@/lib/i18n-context";
 
 export default function Footer() {
+  const { t } = useI18n();
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
@@ -14,13 +17,13 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto px-6 py-10 text-center space-y-4">
         <div className="flex justify-center gap-6 text-sm text-muted-foreground">
-          <Link href="https://github.com" target="_blank">GitHub</Link>
-          <Link href="https://linkedin.com" target="_blank">LinkedIn</Link>
-          <Link href="https://twitter.com" target="_blank">X / Twitter</Link>
+          <Link href="https://github.com" target="_blank">{t("footer.github", "GitHub")}</Link>
+          <Link href="https://linkedin.com" target="_blank">{t("footer.linkedin", "LinkedIn")}</Link>
+          <Link href="https://twitter.com" target="_blank">{t("footer.twitter", "X / Twitter")}</Link>
         </div>
 
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Santiago. Built with Next.js + Tailwind.
+          {t("footer.copyright", "© {year} Santiago. Built with Next.js + Tailwind.").replace("{year}", new Date().getFullYear().toString())}
         </p>
       </div>
     </motion.footer>

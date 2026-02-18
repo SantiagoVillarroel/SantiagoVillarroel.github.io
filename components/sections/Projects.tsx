@@ -7,10 +7,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { projects, getAllTags, filterProjects } from "@/lib/projects";
+import { useI18n } from "@/lib/i18n-context";
 
 type SortOption = "recent" | "complexity" | "featured";
 
 export default function Projects() {
+  const { t } = useI18n();
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("recent");
@@ -89,14 +91,14 @@ export default function Projects() {
 
   return (
     <section id="projects" className="max-w-6xl mx-auto px-6 py-32">
-      <h2 className="text-3xl font-bold mb-12">Projects</h2>
+      <h2 className="text-3xl font-bold mb-12">{t("projects.title", "Projects")}</h2>
 
       {/* Filter Controls */}
       <div className="mb-8 space-y-6">
         {/* Search Input */}
         <div>
           <Input
-            placeholder="Search projects by name, keywords..."
+            placeholder={t("projects.search", "Search projects by name, keywords...")}
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -109,28 +111,28 @@ export default function Projects() {
         {/* Sort Options */}
         <div className="flex gap-2 flex-wrap">
           <span className="text-sm font-medium text-muted-foreground self-center">
-            Sort by:
+            {t("projects.sortBy", "Sort by:")}
           </span>
           <Button
             variant={sortBy === "recent" ? "default" : "outline"}
             size="sm"
             onClick={() => setSortBy("recent")}
           >
-            Recent
+            {t("projects.recent", "Recent")}
           </Button>
           <Button
             variant={sortBy === "complexity" ? "default" : "outline"}
             size="sm"
             onClick={() => setSortBy("complexity")}
           >
-            Complexity
+            {t("projects.complexity", "Complexity")}
           </Button>
           <Button
             variant={sortBy === "featured" ? "default" : "outline"}
             size="sm"
             onClick={() => setSortBy("featured")}
           >
-            Featured
+            {t("projects.featured", "Featured")}
           </Button>
         </div>
 
@@ -138,7 +140,7 @@ export default function Projects() {
         <div>
           <div className="flex gap-2 flex-wrap mb-3">
             <span className="text-sm font-medium text-muted-foreground self-center">
-              Filter by tags:
+              {t("projects.filterByTags", "Filter by tags:")}
             </span>
             {selectedTags.length > 0 && (
               <Button
@@ -147,7 +149,7 @@ export default function Projects() {
                 onClick={handleClearFilters}
                 className="text-xs"
               >
-                Clear filters
+                {t("projects.clearFilters", "Clear filters")}
               </Button>
             )}
           </div>
@@ -168,7 +170,9 @@ export default function Projects() {
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground">
-          Showing {displayedProjects.length} of {filteredProjects.length} projects
+          {t("projects.showingOf", "Showing {current} of {total} projects")
+            .replace("{current}", displayedProjects.length.toString())
+            .replace("{total}", filteredProjects.length.toString())}
         </p>
       </div>
 
@@ -246,7 +250,7 @@ export default function Projects() {
                   {/* CTA Button */}
                   <div className="px-6 pb-4 pt-2">
                     <Button variant="default" size="sm" className="w-full" asChild>
-                      <a href={`/projects/${project.slug}`}>View Project</a>
+                      <a href={`/projects/${project.slug}`}>{t("projects.viewProject", "View Project")}</a>
                     </Button>
                   </div>
                 </Card>
@@ -258,7 +262,7 @@ export default function Projects() {
           {hasMore && (
             <div className="flex justify-center">
               <Button variant="outline" size="lg" onClick={handleLoadMore}>
-                Load More Projects
+                {t("projects.loadMore", "Load More Projects")}
               </Button>
             </div>
           )}
@@ -266,10 +270,10 @@ export default function Projects() {
       ) : (
         <div className="text-center py-12">
           <p className="text-muted-foreground mb-4">
-            No projects found matching your filters.
+            {t("projects.noResults", "No projects found matching your filters.")}
           </p>
           <Button variant="outline" onClick={handleClearFilters}>
-            Clear Filters
+            {t("projects.clearFilters", "Clear filters")}
           </Button>
         </div>
       )}
