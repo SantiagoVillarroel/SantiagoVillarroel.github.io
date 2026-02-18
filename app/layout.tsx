@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "next-themes";
+import { I18nProvider } from "@/lib/i18n-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,15 +31,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <I18nProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+          >
+            <Navbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );

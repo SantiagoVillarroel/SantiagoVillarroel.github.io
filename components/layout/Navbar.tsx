@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "../theme-toggle";
+import LanguageSelector from "@/components/language-selector";
+import { useI18n } from "@/lib/i18n-context";
 
 export default function Navbar() {
+    const { t } = useI18n();
+
     return (
         <motion.nav
             initial={{ y: -20, opacity: 0 }}
@@ -20,13 +24,13 @@ export default function Navbar() {
 
                 <div className="hidden md:flex items-center gap-6">
                     <Link href="#about" className="text-muted-foreground hover:text-foreground">
-                        About
+                        {t("nav.about", "About")}
                     </Link>
                     <Link href="#projects" className="text-muted-foreground hover:text-foreground">
-                        Projects
+                        {t("nav.projects", "Projects")}
                     </Link>
                     <Link href="#contact" className="text-muted-foreground hover:text-foreground">
-                        Contact
+                        {t("nav.contact", "Contact")}
                     </Link>
 
                     <Button variant="outline" size="sm">
@@ -34,6 +38,7 @@ export default function Navbar() {
                     </Button>
 
                     <ThemeToggle />
+                    <LanguageSelector />
                 </div>
             </div>
         </motion.nav>

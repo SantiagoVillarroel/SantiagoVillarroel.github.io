@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Full-Stack Developer",
+    "subtitle": "Building fast, scalable solutions with modern tech",
+    "cta": "Explore My Work"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a passionate developer focused on creating intuitive, high-performance applications. I specialize in full-stack development with React, Next.js, and Node.js."
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project",
+    "search": "Search projects by name, keywords...",
+    "sortBy": "Sort by:",
+    "recent": "Recent",
+    "complexity": "Complexity",
+    "featured": "Featured",
+    "filterByTags": "Filter by tags:",
+    "clearFilters": "Clear filters",
+    "showingOf": "Showing {current} of {total} projects",
+    "loadMore": "Load More Projects",
+    "noResults": "No projects found matching your filters.",
+    "overview": "Overview",
+    "problem": "Problem",
+    "architecture": "Architecture"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "description": "Have a project in mind? Let's talk!",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending..."
+  }
+}

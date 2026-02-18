@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Desarrollador Full-Stack",
+    "subtitle": "Creando soluciones rápidas y escalables con tecnología moderna",
+    "cta": "Explora Mi Trabajo"
+  },
+  "about": {
+    "title": "Acerca de Mí",
+    "description": "Soy un desarrollador apasionado enfocado en crear aplicaciones intuitivas y de alto rendimiento. Me especializo en desarrollo full-stack con React, Next.js y Node.js."
+  },
+  "projects": {
+    "title": "Proyectos",
+    "viewProject": "Ver Proyecto",
+    "search": "Buscar proyectos por nombre, palabras clave...",
+    "sortBy": "Ordenar por:",
+    "recent": "Reciente",
+    "complexity": "Complejidad",
+    "featured": "Destacados",
+    "filterByTags": "Filtrar por etiquetas:",
+    "clearFilters": "Limpiar filtros",
+    "showingOf": "Mostrando {current} de {total} proyectos",
+    "loadMore": "Cargar Más Proyectos",
+    "noResults": "No se encontraron proyectos que coincidan con tus filtros.",
+    "overview": "Descripción General",
+    "problem": "Problema",
+    "architecture": "Arquitectura"
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "description": "¿Tienes un proyecto en mente? ¡Hablemos!",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando..."
+  }
+}
