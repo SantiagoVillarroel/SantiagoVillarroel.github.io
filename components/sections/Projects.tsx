@@ -13,6 +13,12 @@ type SortOption = "recent" | "complexity" | "featured";
 
 export default function Projects() {
   const { t } = useI18n();
+  // helper: convert slug to camelCase key used in translations (e.g., "whatsapp-bot" -> "whatsappBot")
+  const slugToCamelCase = (slug: string) =>
+    slug
+      .split("-")
+      .map((w, i) => (i === 0 ? w : w.charAt(0).toUpperCase() + w.slice(1)))
+      .join("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("recent");
@@ -205,12 +211,18 @@ export default function Projects() {
                   </div>
 
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg">{project.title}</CardTitle>
+                    <CardTitle className="text-lg">{t(
+                      `projectDetails.${slugToCamelCase(project.slug)}.title`,
+                      project.title
+                    )}</CardTitle>
                   </CardHeader>
 
                   <CardContent className="flex-1 space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      {project.description}
+                      {t(
+                        `projectDetails.${slugToCamelCase(project.slug)}.overview`,
+                        project.description
+                      )}
                     </p>
 
                     {/* Tech Stack Icons */}

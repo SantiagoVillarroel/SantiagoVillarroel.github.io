@@ -1,0 +1,38 @@
+cool, now help me redo the translation for the projects details, but with the following projects (flesh out what I state here):
+
+1. Legal AI Assistant
+Problem: lack of intelligent semantic search in document databases
+Overview: Web-based tool that lets you access certain public document databases (indexed and analysed) and upload your own docs. can interact with chatbot to ask about the document and get recommendations on similarity with other docs.
+Notes: next stage could include writing assist, not just reading
+Stage: MVP, pending showcase to the client
+Tech stack: React, Tailwind, shadcn ; Python, MongoDB, Gemini API
+
+2. Tech Store Landing Page
+NextJS page, landing page for Tech Store, not e-commerce but aiming to funnel to wapp chat
+Just frontend, deployed in Vercel
+Stage: Done
+
+3. E-Commerce - Tech Re-seller
+Web page that acts as e-commerce, user can add items to cart and checkout to finish a purchase
+Also, web-scraping service requested by the client that scrapes a source Tech page (authorized)
+API that serves the items (purchase order handling is pending)
+Tech stack: NextJS, scraper uses playwright, server uses Express
+
+4. Sales Chatbot Assistant
+System that allows you to define products and product families, in order to have catalogue information to feed into the chatbot
+This feature is Web based
+Also, can define Features for product families with their corresponding values
+Pending: allow the user to explain a feature in natural language
+Backend saves this info, has API
+Also separate I have llm and semantic search functionality (python)
+Tech stack: react, mantine, tailwindcss ; NestJS, prisma for orm ; Python, Gemini API, Elastic Search
+
+5. Whatsapp Bot
+Bot using wappjs library, that automates re-sending to multiple chat groups (broadcast feature) and also has moderation rules
+Tech stack: JS, Wapp library uses Puppeteer, sqlite for db, deployed in AWS EC2
+
+6. Discounts App
+App (mobile) that shows Discounts available for specific stores in the area. It aims to make it easier to see promotions available for an University's students, so there should be some validation. Also, store owner should be able to upload and cancel some discounts
+Tech stack: React Native ; NestJS and Prisma and postgres
+
+whatsapp bot: is NOT business api, and no configurable rules. Change that so it's not misleading

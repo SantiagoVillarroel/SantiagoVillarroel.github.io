@@ -11,8 +11,20 @@ interface ProjectDetailClientProps {
   project: Project;
 }
 
+// Helper to convert slug to camelCase for translation keys
+const slugToCamelCase = (slug: string): string => {
+  return slug
+    .split('-')
+    .map((word, index) => {
+      if (index === 0) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join('');
+};
+
 export default function ProjectDetailClient({ project }: ProjectDetailClientProps) {
   const { t } = useI18n();
+  const projectKey = slugToCamelCase(project.slug);
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-24">
@@ -45,7 +57,9 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
             <CardTitle>{project.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">{project.overview ?? project.description}</p>
+            <p className="text-muted-foreground">
+              {t(`projectDetails.${projectKey}.overview`, project.overview ?? project.description)}
+            </p>
           </CardContent>
         </Card>
       </section>
@@ -55,7 +69,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
         <Card>
           <CardContent>
             <p className="text-muted-foreground">
-              {project.problem ?? "TBD: Describe the problem this project solves."}
+              {t(`projectDetails.${projectKey}.problem`, project.problem ?? "TBD: Describe the problem this project solves.")}
             </p>
           </CardContent>
         </Card>

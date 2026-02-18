@@ -47,5 +47,31 @@
     "linkedin": "LinkedIn",
     "twitter": "X / Twitter",
     "copyright": "© {year} Santiago. Built with Next.js + Tailwind."
+  },
+  "projectDetails": {
+    "legalAiAssistant": {
+      "overview": "AI-powered document assistant allowing users to access indexed legal databases and upload custom documents for semantic queries.",
+      "problem": "Legal databases lack intelligent semantic search. Lawyers spend hours manually searching through documents and finding similar cases."
+    },
+    "techStoreLanding": {
+      "overview": "Clean, fast landing page showcasing Tech Store products with direct WhatsApp integration for sales inquiries.",
+      "problem": "Need a performant landing page that converts visitors to WhatsApp conversations for sales support."
+    },
+    "ecommerceTechReseller": {
+      "overview": "Complete e-commerce solution with dynamic inventory from web scraping, shopping cart, and checkout flow.",
+      "problem": "Manual inventory management is error-prone. Need automated scraping to sync prices and availability from supplier sites."
+    },
+    "salesChatbotAssistant": {
+      "overview": "Admin dashboard to manage product catalog with feature definitions. AI chatbot uses semantic search and LLM to answer customer queries and recommend products.",
+      "problem": "Sales teams need intelligent assistants that understand product features and can explain them in natural language to customers."
+    },
+    "whatsappBot": {
+      "overview": "Automated WhatsApp bot for broadcasting messages to multiple groups with configurable moderation rules and user management.",
+      "problem": "Manual messaging across multiple WhatsApp groups is time-consuming. Need automation for broadcasts and moderation."
+    },
+    "discountsApp": {
+      "overview": "Mobile app discovering local store discounts with location-based filtering and student-exclusive validation. Store owners manage promotions via admin panel.",
+      "problem": "University students struggle to find available discounts. Store owners lack an easy way to advertise time-limited promotions."
+    }
   }
 }

@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import BackToProjects from "@/components/navigation/BackToProjects";
 import ArchitectureGraph from "@/components/projects/ArchitectureGraph";
-import ProjectDetailClient from "@/components/projects/ProjectDetailClient";
 import { projects } from "@/lib/projects";
+import ProjectDetailClient from "@/components/projects/ProjectDetailClient";
 
 interface Params {
   params: { slug: string } | Promise<{ slug: string }>;
@@ -17,3 +17,4 @@ export default async function ProjectPage({ params }: Params) {
   if (!project) return notFound();
 
   return <ProjectDetailClient project={project} />;
+}

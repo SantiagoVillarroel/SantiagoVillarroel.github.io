@@ -47,5 +47,31 @@
     "linkedin": "LinkedIn",
     "twitter": "X / Twitter",
     "copyright": "© {year} Santiago. Creado con Next.js + Tailwind."
+  },
+  "projectDetails": {
+    "legalAiAssistant": {
+      "overview": "Asistente de documentos impulsado por IA que permite a los usuarios acceder a bases de datos legales indexadas y cargar documentos personalizados para consultas semánticas.",
+      "problem": "Las bases de datos legales carecen de búsqueda semántica inteligente. Los abogados pasan horas buscando manualmente documentos y encontrando casos similares."
+    },
+    "techStoreLanding": {
+      "overview": "Página de destino moderna y rápida que muestra productos de Tech Store con integración directa de WhatsApp para consultas de ventas.",
+      "problem": "Se necesita una página de destino de alto rendimiento que convierta visitantes en conversaciones de WhatsApp para soporte de ventas."
+    },
+    "ecommerceTechReseller": {
+      "overview": "Solución de comercio electrónico completa con inventario dinámico del web scraping, carrito de compras y flujo de pago.",
+      "problem": "La gestión manual de inventario es propensa a errores. Se necesita rasguño automático para sincronizar precios y disponibilidad de los sitios de proveedores."
+    },
+    "salesChatbotAssistant": {
+      "overview": "Panel de administración para gestionar el catálogo de productos con definiciones de características. El chatbot de IA utiliza búsqueda semántica y LLM para responder consultas de clientes y recomendar productos.",
+      "problem": "Los equipos de ventas necesitan asistentes inteligentes que entiendan las características del producto y puedan explicarlas en lenguaje natural a los clientes."
+    },
+    "whatsappBot": {
+      "overview": "Bot automatizado de WhatsApp para transmitir mensajes a múltiples grupos con reglas de moderación configurables y gestión de usuarios.",
+      "problem": "El envío manual de mensajes en múltiples grupos de WhatsApp consume mucho tiempo. Se necesita automatización para transmisiones y moderación."
+    },
+    "discountsApp": {
+      "overview": "Aplicación móvil para descubrir descuentos de tiendas locales con filtrado basado en ubicación y validación exclusiva para estudiantes. Los propietarios de tiendas gestionan promociones a través del panel de administración.",
+      "problem": "Los estudiantes universitarios tienen dificultades para encontrar descuentos disponibles. Los propietarios de tiendas carecen de una forma fácil de publicitar promociones limitadas en tiempo."
+    }
   }
 }
