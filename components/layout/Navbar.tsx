@@ -29,9 +29,6 @@ export default function Navbar() {
                     <Link href="#projects" className="text-muted-foreground hover:text-foreground">
                         {t("nav.projects", "Projects")}
                     </Link>
-                    <Link href="#contact" className="text-muted-foreground hover:text-foreground">
-                        {t("nav.contact", "Contact")}
-                    </Link>
 
                     <Button variant="outline" size="sm">
                         Resume

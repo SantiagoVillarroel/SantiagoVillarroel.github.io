@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import * as LucideIcons from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -114,52 +113,8 @@ export default function Projects() {
           />
         </div>
 
-        {/* Sort Options */}
-        <div className="flex gap-2 flex-wrap">
-          <span className="text-sm font-medium text-muted-foreground self-center">
-            {t("projects.sortBy", "Sort by:")}
-          </span>
-          <Button
-            variant={sortBy === "recent" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSortBy("recent")}
-          >
-            {t("projects.recent", "Recent")}
-          </Button>
-          <Button
-            variant={sortBy === "complexity" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSortBy("complexity")}
-          >
-            {t("projects.complexity", "Complexity")}
-          </Button>
-          <Button
-            variant={sortBy === "featured" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSortBy("featured")}
-          >
-            {t("projects.featured", "Featured")}
-          </Button>
-        </div>
-
         {/* Tag Filters */}
-        <div>
-          <div className="flex gap-2 flex-wrap mb-3">
-            <span className="text-sm font-medium text-muted-foreground self-center">
-              {t("projects.filterByTags", "Filter by tags:")}
-            </span>
-            {selectedTags.length > 0 && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleClearFilters}
-                className="text-xs"
-              >
-                {t("projects.clearFilters", "Clear filters")}
-              </Button>
-            )}
-          </div>
-          <div className="flex gap-2 flex-wrap">
+<div className="flex gap-2 flex-wrap">
             {allTags.map((tag) => (
               <Button
                 key={tag}
@@ -172,7 +127,7 @@ export default function Projects() {
               </Button>
             ))}
           </div>
-        </div>
+        
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground">
@@ -194,9 +149,20 @@ export default function Projects() {
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full flex flex-col">
+                <Card className="h-full flex flex-col overflow-hidden">
+                  {/* Project Image */}
+                  {project.image && (
+                    <div className="h-40 w-full overflow-hidden bg-muted">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+
                   {/* Status Badge */}
-                  <div className="px-6 pt-4 pb-2">
+                  <div className="px-4 pt-3 pb-0">
                     <span
                       className={`text-xs font-semibold px-3 py-1 rounded-full inline-block ${
                         project.status === "Active"
@@ -210,39 +176,23 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-lg">{t(
+                  <CardHeader className="py-3 pb-2">
+                    <CardTitle className="text-base">{t(
                       `projectDetails.${slugToCamelCase(project.slug)}.title`,
                       project.title
                     )}</CardTitle>
                   </CardHeader>
 
-                  <CardContent className="flex-1 space-y-4">
-                    <p className="text-sm text-muted-foreground">
+                  <CardContent className="flex-1 space-y-3 py-0">
+                    <p className="text-sm text-muted-foreground line-clamp-2">
                       {t(
                         `projectDetails.${slugToCamelCase(project.slug)}.overview`,
                         project.description
                       )}
                     </p>
 
-                    {/* Tech Stack Icons */}
-                    <div className="flex gap-2 flex-wrap">
-                      {project.techStack.map((iconName) => {
-                        const IconComponent = (LucideIcons as any)[iconName];
-                        return IconComponent ? (
-                          <div
-                            key={iconName}
-                            className="p-2 rounded-lg bg-muted"
-                            title={iconName}
-                          >
-                            <IconComponent className="w-4 h-4" />
-                          </div>
-                        ) : null;
-                      })}
-                    </div>
-
                     {/* Tags */}
-                    <div className="flex gap-1 flex-wrap pt-2">
+                    <div className="flex gap-1 flex-wrap pt-1">
                       {project.tags.map((tag) => (
                         <button
                           key={tag}
@@ -260,7 +210,7 @@ export default function Projects() {
                   </CardContent>
 
                   {/* CTA Button */}
-                  <div className="px-6 pb-4 pt-2">
+                  <div className="px-4 py-3 pt-2">
                     <Button variant="default" size="sm" className="w-full" asChild>
                       <a href={`/projects/${project.slug}`}>{t("projects.viewProject", "View Project")}</a>
                     </Button>

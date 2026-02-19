@@ -20,6 +20,9 @@ export default function Footer() {
           <Link href="https://github.com" target="_blank">{t("footer.github", "GitHub")}</Link>
           <Link href="https://linkedin.com" target="_blank">{t("footer.linkedin", "LinkedIn")}</Link>
           <Link href="https://twitter.com" target="_blank">{t("footer.twitter", "X / Twitter")}</Link>
+          <Link href="mailto:santiagovillarroel001@gmail.com" className="hover:text-foreground transition-colors">
+            Email
+          </Link>
         </div>
 
         <p className="text-xs text-muted-foreground">
