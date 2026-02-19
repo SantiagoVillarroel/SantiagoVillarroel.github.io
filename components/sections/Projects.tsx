@@ -95,7 +95,7 @@ export default function Projects() {
   // Render immediately; filtering is client-side only.
 
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-6 py-32">
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-16">
       <h2 className="text-3xl font-bold mb-12">{t("projects.title", "Projects")}</h2>
 
       {/* Filter Controls */}
@@ -152,11 +152,18 @@ export default function Projects() {
                 <Card className="h-full flex flex-col overflow-hidden">
                   {/* Project Image */}
                   {project.image && (
-                    <div className="h-40 w-full overflow-hidden bg-muted">
+                    <div className="h-40 w-full overflow-hidden bg-muted relative">
                       <img
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover"
+                      />
+                      {/* Vignette fade overlay */}
+                      <div 
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          boxShadow: 'inset 0 0 30px rgba(0,0,0,0.3)'
+                        }}
                       />
                     </div>
                   )}

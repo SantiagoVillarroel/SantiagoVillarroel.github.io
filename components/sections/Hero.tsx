@@ -31,7 +31,7 @@ export default function Hero() {
             <a href="#projects">{t("hero.viewProjects", "View Projects")}</a>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <a href="#contact">{t("hero.contactMe", "Contact Me")}</a>
+            <a href="mailto:santiagovillarroel001@gmail.com">{t("hero.contactMe", "Contact Me")}</a>
           </Button>
         </div>
       </motion.div>
