@@ -36,3 +36,9 @@ App (mobile) that shows Discounts available for specific stores in the area. It 
 Tech stack: React Native ; NestJS and Prisma and postgres
 
 whatsapp bot: is NOT business api, and no configurable rules. Change that so it's not misleading
+
+please, based on the context of this whole project, help me define an architecture diagram that includes (at least): Client (frontend), API / Express Server , Database, Scraper Worker
+
+Specify how they interact via edges in the graph
+
+Also, for each node give a brief description: Description, Technologies used

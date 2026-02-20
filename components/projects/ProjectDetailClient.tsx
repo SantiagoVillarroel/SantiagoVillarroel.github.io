@@ -43,8 +43,8 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
           <Image
             src={project.image}
             alt={project.title}
-            width={1200}
-            height={400}
+            width={1000}
+            height={200}
             className="rounded-md object-cover"
           />
         </div>

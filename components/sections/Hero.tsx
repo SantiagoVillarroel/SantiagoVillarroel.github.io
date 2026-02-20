@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-[90vh] flex items-center justify-center px-6"
+      className="min-h-[50vh] flex items-center justify-center px-6 mt-20"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

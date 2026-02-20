@@ -52,7 +52,7 @@ export const projects: Project[] = [
     complexity: 8,
     createdDate: "2026-02-10",
     link: "/projects/legal-ai-assistant",
-    image: "https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=800&h=400&fit=crop",
+    image: "/law-ai-img.png",
     overview:
       "AI-powered document assistant allowing users to access indexed legal databases and upload custom documents for semantic queries.",
     problem:
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     complexity: 3,
     createdDate: "2026-01-20",
     link: "/projects/tech-store-landing",
-    image: "https://images.unsplash.com/photo-1460925895917-adf4e5d2f89a?w=800&h=400&fit=crop",
+    image: "/tech-store-img.png",
     overview:
       "Clean, fast landing page showcasing Tech Store products with direct WhatsApp integration for sales inquiries.",
     problem:
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     complexity: 7,
     createdDate: "2026-01-15",
     link: "/projects/ecommerce-tech-reseller",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=400&fit=crop",
+    image: "/zenti-img-2.png",
     overview:
       "Complete e-commerce solution with dynamic inventory from web scraping, shopping cart, and checkout flow.",
     problem:
@@ -195,7 +195,7 @@ export const projects: Project[] = [
     complexity: 9,
     createdDate: "2026-01-10",
     link: "/projects/sales-chatbot-assistant",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop",
+    image: "/sales-chatbot.png",
     overview:
       "Admin dashboard to manage product catalog with feature definitions. AI chatbot uses semantic search and LLM to answer customer queries and recommend products.",
     problem:
@@ -269,7 +269,7 @@ export const projects: Project[] = [
     complexity: 6,
     createdDate: "2026-01-05",
     link: "/projects/whatsapp-bot",
-    image: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=800&h=400&fit=crop",
+    image: "/wapp-bot.png",
     overview:
       "Automated WhatsApp bot for broadcasting messages to multiple groups with basic moderation and user management.",
     problem:
