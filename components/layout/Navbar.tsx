@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "../theme-toggle";
 import LanguageSelector from "@/components/language-selector";
 import { useI18n } from "@/lib/i18n-context";
+import { useState } from "react";
 
 export default function Navbar() {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
+    const [open, setOpen] = useState(false);
 
     return (
         <motion.nav
@@ -30,8 +32,17 @@ export default function Navbar() {
                         {t("nav.projects", "Projects")}
                     </Link>
 
-                    <Button variant="outline" size="sm">
-                        Resume
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                    >
+                        <a
+                            href={locale === "en" ? "/resume-en.pdf" : "/resume-es.pdf"}
+                            download
+                        >
+                            {t("nav.resume", "Resume")}
+                        </a>
                     </Button>
 
                     <ThemeToggle />
