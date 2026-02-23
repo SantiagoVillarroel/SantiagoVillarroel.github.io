@@ -10,6 +10,11 @@ interface Params {
   params: { slug: string } | Promise<{ slug: string }>;
 }
 
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }))
+}
+
+
 export default async function ProjectPage({ params }: Params) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
