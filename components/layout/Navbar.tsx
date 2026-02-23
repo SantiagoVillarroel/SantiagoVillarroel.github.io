@@ -21,7 +21,7 @@ export default function Navbar() {
         >
             <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
                 <Link href="/" className="font-semibold text-lg">
-                    Santiago
+                    Santiago's Portfolio
                 </Link>
 
                 <div className="hidden md:flex items-center gap-6">

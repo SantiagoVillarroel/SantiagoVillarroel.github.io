@@ -42,3 +42,14 @@ please, based on the context of this whole project, help me define an architectu
 Specify how they interact via edges in the graph
 
 Also, for each node give a brief description: Description, Technologies used
+
+**
+please, based on the context of this whole project, help me define an architecture diagram that includes (at least): Client (frontend), API / NestJS Server , Database (MySQL), Semantic Layer (ElasticSearch, knn, embeddings), LLM Layer, 
+
+Specify how they interact via edges in the graph
+
+Also, for each node give a brief description: Description, Technologies used
+
+You should check other folder sales-chatbot-backend and sales-chatbot-frontend
+
+Keep it concise and simple bc it's meant for a portfolio showcase
