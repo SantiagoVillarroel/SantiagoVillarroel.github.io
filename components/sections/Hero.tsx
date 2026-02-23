@@ -25,7 +25,10 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg text-muted-foreground mb-8">
-          {t("hero.subtitle", "I build modern web applications with React, Next.js and clean architecture.")}
+          {t(
+            "hero.subtitle",
+            "Full-stack developer: web, APIs, AI, automation & cloud deployment."
+          )}
         </p>
 
         <div className="flex justify-center gap-4">

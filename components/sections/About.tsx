@@ -13,7 +13,10 @@ export default function About() {
       <h2 className="text-3xl font-bold mb-6">{t("about.title", "About")}</h2>
 
       <p className="text-muted-foreground leading-relaxed">
-        {t("about.description", "I'm a software developer focused on building clean, scalable web applications. I enjoy working with React, Next.js, backend APIs, and exploring how AI can enhance developer and user experiences.")}
+        {t(
+          "about.description",
+          "Full-stack developer experienced in web, APIs, AI, automation, and cloud deployment. I build scalable solutions using React, Next.js, Node.js, Python, and cloud platforms like AWS. Passionate about integrating AI and automation to solve real-world problems."
+        )}
       </p>
     </section>
   );

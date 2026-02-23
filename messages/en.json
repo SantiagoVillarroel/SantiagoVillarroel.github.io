@@ -8,13 +8,13 @@
   "hero": {
     "greeting": "Hi, I'm Santiago",
     "title": "Full-Stack Developer",
-    "subtitle": "I build modern web applications with React, Next.js and clean architecture.",
+    "subtitle": "Full-stack developer: web, APIs, AI, automation & cloud deployment.",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me"
   },
   "about": {
     "title": "About",
-    "description": "I'm a software developer focused on building clean, scalable web applications. I enjoy working with React, Next.js, backend APIs, and exploring how AI can enhance developer and user experiences."
+    "description": "Full-stack developer experienced in web, APIs, AI, automation, and cloud deployment. I build scalable solutions using React, Next.js, Node.js, Python, and cloud platforms like AWS. Passionate about integrating AI and automation to solve real-world problems."
   },
   "projects": {
     "title": "Projects",

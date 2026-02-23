@@ -26,12 +26,7 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto px-6 py-10 text-center space-y-4">
         <div className="flex justify-center gap-6 text-sm text-muted-foreground">
-          <Link href="https://github.com" target="_blank">{t("footer.github", "GitHub")}</Link>
-          <Link href="https://linkedin.com" target="_blank">{t("footer.linkedin", "LinkedIn")}</Link>
-          <Link href="https://twitter.com" target="_blank">{t("footer.twitter", "X / Twitter")}</Link>
-          <Link href="mailto:santiagovillarroel001@gmail.com" className="hover:text-foreground transition-colors">
-            Email
-          </Link>
+          <Link href="https://github.com/SantiagoVillarroel" target="_blank">{t("footer.github", "GitHub")}</Link>
         </div>
         <div className="flex justify-center items-center gap-2 mt-2">
           <span>{email}</span>

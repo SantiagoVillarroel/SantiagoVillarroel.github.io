@@ -8,13 +8,13 @@
   "hero": {
     "greeting": "Hola, soy Santiago",
     "title": "Desarrollador Full-Stack",
-    "subtitle": "Construyo aplicaciones web modernas con React, Next.js y arquitectura limpia.",
+    "subtitle": "Desarrollador full-stack: web, APIs, IA, automatización y despliegue en la nube.",
     "viewProjects": "Ver Proyectos",
     "contactMe": "Contactarme"
   },
   "about": {
     "title": "Acerca de",
-    "description": "Soy un desarrollador de software enfocado en construir aplicaciones web limpias y escalables. Disfruto trabajando con React, Next.js, APIs backend, y explorando cómo la IA puede mejorar las experiencias de desarrolladores y usuarios."
+    "description": "Desarrollador full-stack con experiencia en web, APIs, IA, automatización y despliegue en la nube. Construyo soluciones escalables usando React, Next.js, Node.js, Python y plataformas cloud como AWS. Apasionado por integrar IA y automatización para resolver problemas reales."
   },
   "projects": {
     "title": "Proyectos",
