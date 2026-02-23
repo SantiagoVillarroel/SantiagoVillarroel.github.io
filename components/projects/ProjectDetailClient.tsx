@@ -89,6 +89,17 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
           </Card>
         )}
       </section>
+
+      {/* Demo Section */}
+      {project.demoVideo && (
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-3">{t("projects.demo", "Demo")}</h2>
+          <video controls className="w-full rounded">
+            <source src={project.demoVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </section>
+      )}
     </main>
   );
 }

@@ -33,6 +33,7 @@ export interface Project {
   createdDate: string; // ISO date string
   link: string;
   image?: string; // URL to project image
+  demoVideo?: string;
   overview?: string;
   problem?: string;
   architecture?: string;
@@ -189,7 +190,7 @@ export const projects: Project[] = [
     title: "Sales Chatbot Assistant",
     description: "System for defining product catalogs and families with AI-powered sales chatbot. Features semantic search and LLM-based recommendations.",
     techStack: [],
-    status: "Active",
+    status: "MVP",
     tags: ["AI", "React", "NestJS", "Chatbot"],
     featured: true,
     complexity: 9,
@@ -285,13 +286,14 @@ export const projects: Project[] = [
     title: "Discounts App",
     description: "Mobile app (React Native) showing real-time discounts from local stores. Includes store owner backend for uploading promotions and student validation.",
     techStack: [],
-    status: "Active",
+    status: "MVP",
     tags: ["Mobile", "React-Native", "NestJS"],
     featured: false,
     complexity: 7,
     createdDate: "2025-12-28",
     link: "/projects/discounts-app",
     image: "/discounts-img.jpg",
+    demoVideo: "/videos/discounts-1.mp4",
     overview:
       "Mobile app discovering local store discounts with location-based filtering and student-exclusive validation. Store owners manage promotions via admin panel.",
     problem:
